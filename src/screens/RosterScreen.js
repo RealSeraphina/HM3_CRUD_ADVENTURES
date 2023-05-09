@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity, ScrollView } from "react-native";
 
 import { Context } from "../context/HeroContext";
+import HeroList from "../componets/HeroList";
 import NavBar from "../componets/NavBar";
 
 
@@ -11,9 +12,12 @@ const RosterScreen = (props) => {
     const { state } = useContext(Context);
     const { hireHero } = useContext(Context);
     //console.log(state);
-
+    console.log(state);
     return <View style={styles.container}>   
         <Text style={styles.title}>Hero Roster</Text>
+        {/* <HeroList 
+            onSelect={()=>{props.navigation.navigate("Hero", {id : state.id, level: state.level})}}
+        /> */}
         <FlatList
             data={state}
             keyExtractor={(heros) => {return heros.name}}

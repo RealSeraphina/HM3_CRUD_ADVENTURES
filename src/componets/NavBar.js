@@ -6,7 +6,7 @@ const NavBar = (props) => {
 
     return <View style={styles.container}>
         <TouchableOpacity style={styles.menu} onPress={() => {props.navigation.navigate("Roster")}}><Text style={styles.title}>Roster</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.menu} onPress={() => {props.navigation.navigate("Adventure")}}><Text style={styles.title}>Advetures</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menu} onPress={() => {props.navigation.navigate("Adventure")}}><Text style={styles.title}>Adveture</Text></TouchableOpacity>
     </View>
 }
 
