@@ -12,7 +12,7 @@ const RosterScreen = (props) => {
     const { state } = useContext(Context);
     const { hireHero } = useContext(Context);
     //console.log(state);
-    console.log(state);
+    //console.log(state);
     return <View style={styles.container}>   
         <Text style={styles.title}>Hero Roster</Text>
         {/* <HeroList 

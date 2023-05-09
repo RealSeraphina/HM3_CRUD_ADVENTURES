@@ -35,6 +35,23 @@ const heroReducer = (state, action) => {
                     return hero;
                 }
             })
+        case 'update_hero':
+            //console.log('update_hero');
+            return state.map((hero) => {
+                console.log(hero.id);
+                console.log(action.payload);
+                if(hero.id === action.payload.id){
+                    console.log("Hero Found");  
+                    hero.currentHealth = action.payload.currentHealth;
+                    hero.gold = action.payload.gold;
+                    hero.power = action.payload.power;                 
+                    return hero;
+                }
+                else{
+                    console.log("Hero NOT Found")
+                    return hero;
+                }
+            })
         default:
             return state;
     }
@@ -44,6 +61,13 @@ const levelHero = (dispatch) => {
     //console.log("Level Hero");
     return (id) => {
         dispatch({type: 'level_hero', payload:{id: id}})
+    }
+}
+
+const updateHero = (dispatch) => {
+    //console.log("update hero");
+    return (hero) => {
+        dispatch({type: 'update_hero', payload:{id: hero.id, gold: hero.gold, currentHealth: hero.health, power: hero.power, status: hero.status}})
     }
 }
 
@@ -77,7 +101,7 @@ const generateHero = () => {
 
 
 export const {Context, Provider} = createDataContext(heroReducer, 
-                                    {hireHero: hireHero, levelHero: levelHero}, 
+                                    {hireHero: hireHero, levelHero: levelHero, updateHero: updateHero}, 
                                     [{id: 1, name: "JoCat", level: 1, power: 10, maxHealth: 100, currentHealth: 100, gold: 5000}]
                                     );
 

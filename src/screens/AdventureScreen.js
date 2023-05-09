@@ -7,7 +7,7 @@ import NavBar from "../componets/NavBar";
 
 
 const AdventureScreen = (props) => {
-    const { state } = useContext(Context);
+    const { state, updateHero } = useContext(Context);
     const { name, challengeLevel } = newAdventure();
     return <View style={styles.container}>
         <View style={styles.container}>
@@ -17,7 +17,17 @@ const AdventureScreen = (props) => {
             data={state}
             keyExtractor={(heros) => {return heros.name}}
             renderItem={({item}) => {
-                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level})}}>
+                return  <TouchableOpacity onPress={ () => {
+                    heroUpdate = engageAdventure(item.id,item.power,item.currentHealth,item.gold,challengeLevel)
+                    //console.log(heroUpdate.heroID)
+                    if(heroUpdate.status){
+                        //console.log("win: " + heroUpdate.status);
+                        updateHero(heroUpdate);
+                    }
+                    else{
+                        console.log("lose");
+                    }
+                    }}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
                     </View>
@@ -28,6 +38,27 @@ const AdventureScreen = (props) => {
         <NavBar />
     </View>
     
+}
+
+const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) => {
+    //console.log("engage adventure");
+    //console.log("Hero power: " + heroPower);
+    //console.log("challengeLV: " + challengeLV);
+    let heroUpdate = {};
+    if(heroPower >= challengeLV){
+        //console.log(heroID + " wins ");
+        heroUpdate.power = heroPower + Math.floor(Math.random()*10) + challengeLV;
+        heroUpdate.gold = heroGold +  Math.floor(Math.random()*100) + challengeLV;
+        heroUpdate.health = heroHealth - Math.floor(Math.random()*2);
+        heroUpdate.status = true; 
+        heroUpdate.id = heroID;
+
+        return heroUpdate;
+    }
+    else{
+        //console.log(heroID + " loses ")
+        return heroUpdate.status = false;
+    }
 }
 
 const newAdventure = () => {
@@ -77,7 +108,7 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth: 5,
         alignSelf: "stretch",
-        padding: 2,
+        padding: 4,
         
     },
     challengeLV:{
