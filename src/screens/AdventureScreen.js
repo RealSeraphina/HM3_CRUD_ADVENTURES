@@ -19,14 +19,7 @@ const AdventureScreen = (props) => {
             renderItem={({item}) => {
                 return  <TouchableOpacity onPress={ () => {
                     heroUpdate = engageAdventure(item.id,item.power,item.currentHealth,item.gold,challengeLevel)
-                    //console.log(heroUpdate.heroID)
-                    if(heroUpdate.status){
-                        //console.log("win: " + heroUpdate.status);
-                        updateHero(heroUpdate);
-                    }
-                    else{
-                        console.log("lose");
-                    }
+                     updateHero(heroUpdate);
                     }}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
@@ -57,7 +50,12 @@ const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) =
     }
     else{
         //console.log(heroID + " loses ")
-        return heroUpdate.status = false;
+        heroUpdate.power = heroPower;
+        heroUpdate.gold = heroGold +  Math.floor(Math.random()*5);
+        heroUpdate.health = heroHealth - Math.floor(Math.random()*10);
+        heroUpdate.status = false; 
+        heroUpdate.id = heroID;
+        return heroUpdate;
     }
 }
 

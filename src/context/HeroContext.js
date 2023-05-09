@@ -38,17 +38,17 @@ const heroReducer = (state, action) => {
         case 'update_hero':
             //console.log('update_hero');
             return state.map((hero) => {
-                console.log(hero.id);
-                console.log(action.payload);
+                //console.log(hero.id);
+                //console.log(action.payload);
                 if(hero.id === action.payload.id){
-                    console.log("Hero Found");  
+                    //console.log("Hero Found");  
                     hero.currentHealth = action.payload.currentHealth;
                     hero.gold = action.payload.gold;
                     hero.power = action.payload.power;                 
                     return hero;
                 }
                 else{
-                    console.log("Hero NOT Found")
+                    //console.log("Hero NOT Found")
                     return hero;
                 }
             })
