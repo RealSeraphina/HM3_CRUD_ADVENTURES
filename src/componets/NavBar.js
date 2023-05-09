@@ -5,8 +5,8 @@ import { withNavigation } from 'react-navigation';
 const NavBar = (props) => {
 
     return <View style={styles.container}>
-        <TouchableOpacity style={styles.container} onPress={() => {props.navigation.navigate("Roster")}}><Text>Roster</Text></TouchableOpacity>
-        <TouchableOpacity onPress={() => {props.navigation.navigate("Adventure")}}><Text>Advetures</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menu} onPress={() => {props.navigation.navigate("Roster")}}><Text style={styles.title}>Roster</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.menu} onPress={() => {props.navigation.navigate("Adventure")}}><Text style={styles.title}>Advetures</Text></TouchableOpacity>
     </View>
 }
 
@@ -15,15 +15,26 @@ const NavBar = (props) => {
 const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
-        borderColor: "black",
-        borderWidth: 1,
+        //borderColor: "black",
+        //borderWidth: 1,
         padding: 1,
-        height: 100
+        height: 100,
     },
     menu:{
+        borderColor: "black",
+        borderWidth: 1,
+        backgroundColor: "cyan",        
         flexDirection: 'row',
+        flex: .5,
         height: 100,
         
+    },
+    title:{
+        fontWeight: "bold",
+        fontSize: 25,
+        alignSelf: "center",
+        textAlign: "center",
+        flex: 1,
     }
 })
 

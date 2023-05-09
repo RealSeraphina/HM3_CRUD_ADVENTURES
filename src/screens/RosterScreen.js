@@ -12,22 +12,22 @@ const RosterScreen = (props) => {
     const { hireHero } = useContext(Context);
     //console.log(state);
 
-    return <View style={styles.container}>
-        <Text>Roster</Text>        
+    return <View style={styles.container}>   
+        <Text style={styles.title}>Hero Roster</Text>
         <FlatList
             data={state}
             keyExtractor={(heros) => {return heros.name}}
             renderItem={({item}) => {
-                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id})}}>
+                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level})}}>
                     <View style = {styles.row}>                    
-                        <Text>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
+                        <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
                     </View>
                 </TouchableOpacity>
             }}
         />
-        <Button title="Hire A New Hero" onPress= {() => {hireHero()}} />
-        <Text>Roster Screen!</Text>
-        
+        <TouchableOpacity style={styles.hireBTN} onPress= {() => {hireHero()}}>
+            <Text style={styles.hireText}>Hire A New Hero!</Text>
+        </TouchableOpacity>
         <NavBar />
     </View>
     
@@ -41,11 +41,20 @@ const styles = StyleSheet.create({
     },
     row:{
         flexDirection: 'row',
+        backgroundColor: "green",
         borderColor: "black",
         borderWidth: 1,
         padding: 1,
+        marginBottom: 5,
+        minHeight: 75,
         flex: 1
 
+    },
+    hero:{
+        fontSize: 25,
+        color: "white",
+        alignSelf: 'center',
+        marginHorizontal: 10,
     },
     icon: {
         fontSize: 40,
@@ -55,7 +64,28 @@ const styles = StyleSheet.create({
     debug: {
         borderColor: "red",
         borderWidth: 5
-    }
+    },
+    title:{
+        fontWeight: "bold",
+        fontSize: 45,
+        alignSelf: "center",
+        textAlign: "center",
+    },
+    hireBTN:{
+        borderColor: "black",
+        borderWidth: 1,
+        backgroundColor: "purple",        
+        flexDirection: 'row',
+        height: 50,        
+    },
+    hireText:{
+        fontWeight: "bold",
+        fontSize: 25,
+        color: "white",
+        alignSelf: "center",
+        textAlign: "center",
+        flex: 1,
+    },
 });
 
 export default RosterScreen;
