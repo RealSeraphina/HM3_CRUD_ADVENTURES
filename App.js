@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import react from "react";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { Provider } from "./src/context/HeroContext";
+import RosterScreen from "./src/screens/RosterScreen";
+import HeroDetailScreen from "./src/screens/HeroDetailScreen";
+import AdventureScreen from "./src/screens/AdventureScreen";
+
+
+const navigator = createStackNavigator({
+  Roster: RosterScreen,
+  Hero: HeroDetailScreen,
+  Adventure: AdventureScreen,
+},
+  {
+    initialRouteName: "Roster",
+    defaultNavigationOptions:{
+      title: "HM3_CRUD_ADVENTURES"
+    }
+  }
+);
+
+const App = createAppContainer(navigator);
+
+export default () => {
+  return <Provider>
+    <App />
+  </Provider>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
