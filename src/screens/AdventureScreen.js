@@ -19,7 +19,8 @@ const AdventureScreen = (props) => {
             renderItem={({item}) => {
                 return  <TouchableOpacity onPress={ () => {
                     heroUpdate = engageAdventure(item.id,item.power,item.currentHealth,item.gold,challengeLevel)
-                     updateHero(heroUpdate);
+                    updateHero(heroUpdate);
+                    props.navigation.navigate("Hero", {id : item.id, heroUpdate});
                     }}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
@@ -40,9 +41,11 @@ const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) =
     let heroUpdate = {};
     if(heroPower >= challengeLV){
         //console.log(heroID + " wins ");
-        heroUpdate.power = heroPower + Math.floor(Math.random()*10) + challengeLV;
-        heroUpdate.gold = heroGold +  Math.floor(Math.random()*100) + challengeLV;
-        heroUpdate.health = heroHealth - Math.floor(Math.random()*2);
+        heroUpdate.power = heroPower;// + Math.floor(Math.random()*10) + challengeLV;
+        heroUpdate.deltaGold = Math.floor(Math.random()*100) + challengeLV
+        heroUpdate.gold = heroGold +  heroUpdate.deltaGold;
+        heroUpdate.deltaHealth =  Math.floor(Math.random()*2);
+        heroUpdate.health = heroHealth - heroUpdate.deltaHealth;
         heroUpdate.status = true; 
         heroUpdate.id = heroID;
 
@@ -51,8 +54,10 @@ const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) =
     else{
         //console.log(heroID + " loses ")
         heroUpdate.power = heroPower;
-        heroUpdate.gold = heroGold +  Math.floor(Math.random()*5);
-        heroUpdate.health = heroHealth - Math.floor(Math.random()*10);
+        heroUpdate.deltaGold = Math.floor(Math.random()*5)
+        heroUpdate.gold = heroGold + heroUpdate.deltaGold;
+        heroUpdate.deltaHealth = Math.round(heroHealth/2) - 1; 
+        heroUpdate.health = heroUpdate.deltaHealth;
         heroUpdate.status = false; 
         heroUpdate.id = heroID;
         return heroUpdate;
