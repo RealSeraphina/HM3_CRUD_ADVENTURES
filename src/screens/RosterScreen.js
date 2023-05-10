@@ -11,6 +11,8 @@ const RosterScreen = (props) => {
 
     const { state } = useContext(Context);
     const { hireHero } = useContext(Context);
+    const heroUpdate = {status: "No Update"};
+    //console.log(heroUpdate);
     //console.log(state);
     //console.log(state);
     return <View style={styles.container}>   
@@ -22,7 +24,7 @@ const RosterScreen = (props) => {
             data={state}
             keyExtractor={(heros) => {return heros.name}}
             renderItem={({item}) => {
-                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level})}}>
+                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level, heroUpdate})}}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
                     </View>
