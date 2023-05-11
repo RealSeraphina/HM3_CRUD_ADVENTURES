@@ -85,8 +85,9 @@ const renderStatus = (heroUpdate) => {
 
 const styles = StyleSheet.create({
     art:{
-        height: 300,
-        width: 300,
+        
+        maxHeight:300,
+        maxWidth: 300,
         alignSelf: "center",
     },
     container:{
