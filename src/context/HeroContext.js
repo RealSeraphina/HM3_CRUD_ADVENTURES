@@ -28,11 +28,11 @@ const heroReducer = (state, action) => {
                 if(hero.id === action.payload.id){
                     //console.log(hero.name);
                     if(hero.gold - (hero.level * 10) >= 0){
-                        hero.level++ ;
                         hero.maxHealth = hero.maxHealth +  Math.floor(Math.random()* 7) + 3;
                         hero.currentHealth = hero.maxHealth;
                         hero.power = hero.power + Math.floor(Math.random()* 5) + 1;
                         hero.gold = hero.gold - (hero.level * 10);
+                        hero.level++ ;
                     }
                     
                     return hero;
