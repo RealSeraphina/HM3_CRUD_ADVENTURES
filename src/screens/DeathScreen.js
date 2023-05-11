@@ -31,7 +31,7 @@ const generateEulogy = (heroName) =>{
         "Here lies [Name], a true warrior and a great leader. They fought bravely in many battles, and they always put the needs of their people first. They will be deeply missed by all who knew them.",
         "[Name] was a fierce warrior and a skilled tactician. They led their people to victory in many battles, and they never once backed down from a challenge. They will be remembered as a true hero.",
         "[Name] was a generous and kind-hearted person. They always helped those in need, and they were always willing to lend a helping hand. They will be deeply missed by all who knew them.",
-        "[Name] was a true Barbarian. They were brave, strong, and fearless. They lived their life to the fullest, and they died a warrior's death. They will be remembered as a legend."
+        "[Name] was a true barbarian. They were brave, strong, and fearless. They lived their life to the fullest, and they died a warrior's death. They will be remembered as a legend."
     ]
     eulogy = eulogyTemplates[Math.floor(Math.random()* eulogyTemplates.length)];
     eulogy = eulogy.replace("[Name]",heroName);

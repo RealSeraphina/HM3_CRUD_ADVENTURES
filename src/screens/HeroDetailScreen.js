@@ -41,7 +41,20 @@ const renderStatus = (heroUpdate) => {
         //console.log("hero has an update!");    
         if(heroUpdate.status){
             //console.log(heroUpdate)
-            let success = "Congradulations brave hero! You compleated your adventure gaining a pile of " + heroUpdate.deltaGold + " Gold! Though you faught bravely it looks like you may have taken a hit or two costing " + heroUpdate.deltaHealth + "HP! Take a load off; perhaps grab a Level Up Potion from the bar and I'm sure you'll feel better than ever! We're going to celebrate!" 
+            let barkeepDialogue = [
+                "Well, well, well, if it isn't the hero of the hour! Congratulations on a job well done. I've got a free drink waiting for you right over here. Not that it looks like you need it with those [GOLD] pieces of gold you gained. You look like you took quite a beating, though. At least [HP] point of damage I'd say. Are you sure you're okay?",
+                "Congradulations brave hero! You compleated your adventure gaining a pile of [GOLD] gold! Though you faught bravely it looks like you may have taken a hit or two costing [HP] HP! Take a load off; perhaps grab a Level Up Potion from the bar and I'm sure you'll feel better than ever! We're going to celebrate!",
+                "What's that I hear? You're back from your quest? That one was paying [GOLD] gold! Took a lick or two eh? I see you're down oh at least [HP] HP. ",
+                "The hero sits at the table and relaxes. They are exhausted [HP] HP from their journey, but they are also happy to be home with a pocket full of [GOLD] new gold pieces. They know that they are safe and that the kingdom is safe thanks to their efforts. Now is the time for rest and celebration.",
+                "I heard you completed your quest! You must have had a tough time, but you made it. You deserve all the [GOLD] gold and glory you have earned. Even if it cost you [HP] HP.",
+                "Well done on completing your quest! Nearly without a scratch on ya! That looks like it may only be [HP] HP of damage. What, did a kobold bite ya? Regardless, you are a brave and skilled adventurer. The world is a safer place thanks to your efforts. I suspect you'll be wanting this [GOLD] gold as payment. Spend it well; you earned it!",
+                "I am so proud of you for completing your quest! You faced many challenges, but you never gave up. You faught well and only took [HP] HP of damage! You are an inspiration to us all and your treasure hunting skills havent gone unnoticed. What's that, you managed to make it out with [GOLD] gold coins? I know just the bar for you to spend them in!"
+            ]
+            //let success = "Congradulations brave hero! You compleated your adventure gaining a pile of " + heroUpdate.deltaGold + " Gold! Though you faught bravely it looks like you may have taken a hit or two costing " + heroUpdate.deltaHealth + "HP! Take a load off; perhaps grab a Level Up Potion from the bar and I'm sure you'll feel better than ever! We're going to celebrate!" 
+            let success = ""
+            success = barkeepDialogue[Math.floor(Math.random()* barkeepDialogue.length)];
+            success = success.replace("[HP]",heroUpdate.deltaHealth);
+            success = success.replace("[GOLD]",heroUpdate.deltaGold);
             heroUpdate = null;
             return success
         }
