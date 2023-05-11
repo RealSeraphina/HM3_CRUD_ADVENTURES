@@ -128,6 +128,6 @@ const generateHero = () => {
 
 export const {Context, Provider} = createDataContext(heroReducer, 
                                     {hireHero: hireHero, levelHero: levelHero, updateHero: updateHero}, 
-                                    [{id: 1, name: "Brave Sir Robin", level: 1, power: 1, maxHealth: 1, currentHealth: 1, gold: 10, art: require("../../assets/slimes/blue_slime.png")}]
+                                    [{id: 1, name: "Brave Sir Robin", level: 1, power: 1, maxHealth: 1, currentHealth: 1, gold: 10, art: require("../../assets/heros/blue_slime.png")}]
                                     );
 
