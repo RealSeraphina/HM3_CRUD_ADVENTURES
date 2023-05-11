@@ -15,7 +15,7 @@ const HeroDetailScreen = (props) => {
     const currentHero = state.find((currentHero) => {
         return heroID === currentHero.id;
     })
-    // const dasArt = currentHero.art;
+    const dasArt = currentHero.art;
     console.log(currentHero);
     return <View style={styles.container}>
         <View style={styles.container}>            
@@ -24,6 +24,7 @@ const HeroDetailScreen = (props) => {
             <Text style={styles.detail}>Health: {currentHero.currentHealth}/{currentHero.maxHealth}</Text>
             <Text style={styles.detail}>Power: {currentHero.power}</Text>
             <Text style={styles.detail}>Gold: {currentHero.gold}</Text>
+            <Image style={styles.art} source={dasArt} />
         </View>
         <View style={{backgroundColor: heroUpdate.status === "No Update" ? null : '#708090'}}>
             <Text style={styles.adventureResults}>{renderStatus(heroUpdate)}</Text>
@@ -59,7 +60,19 @@ const renderStatus = (heroUpdate) => {
             return success
         }
         else{
-            let failure = "Awe don't get down hero! Sure looks like you're a bit worse for the wear. Oh, yeah they tore you up real good I'd say they hit you for at least " + heroUpdate.deltaHealth + "HP. Hey look at that though! Is you coin purse a bit heavier than usual or is it just me? I'd say you managed to get out with your life and " + heroUpdate.deltaGold + " gold pieces... That's something to celebrate."
+            let barkeepDialogue = [
+                "You did your best. That's all anyone can ask. Let's get that [HP] points of damage patched up and here's [GOLD] gold coins for your efforts.",
+                "Awe don't get down hero! Sure looks like you're a bit worse for the wear. Oh, yeah they tore you up real good I'd say they hit you for at least [HP] HP. Hey look at that though! Is you coin purse a bit heavier than usual or is it just me? I'd say you managed to get out with your life and [GOLD] gold pieces... That's something to celebrate.",
+                "You're a brave and skilled adventurer. Don't let this one defeat you. After all [HP] points of damage? You've had worse! Would [GOLD] coins be enough for a drink?",
+                "Failure hurts... In your case it hurts [HP] HP. We're all here for you. We'll help you through this. At least you got out with your life and [GOLD] gold pieces.",
+                "I know you're disappointed, but you shouldn't be. You fought bravely and gave it your all. You made a difference with each hit your took and that is a big difference seeing as you took [HP] points of damage! That's all anyone can ask. Well, that and I'm pretty sure [GOLD] gold isn't going to afford a mage to heal you... Maybe go pray and a paladin will take mercy on you.",
+                "This is just a setback. You can still achieve your goals. Don't give up on your dreams. You took [HP] points of damage, but there's still air in your lungs and an edge on your blade. Take your [GOLD] gold, buy a drink, and get out there!"
+            ]
+            //let failure = "Awe don't get down hero! Sure looks like you're a bit worse for the wear. Oh, yeah they tore you up real good I'd say they hit you for at least " + heroUpdate.deltaHealth + "HP. Hey look at that though! Is you coin purse a bit heavier than usual or is it just me? I'd say you managed to get out with your life and " + heroUpdate.deltaGold + " gold pieces... That's something to celebrate."
+            let failure = ""
+            failure = barkeepDialogue[Math.floor(Math.random()* barkeepDialogue.length)];
+            failure = failure.replace("[HP]",heroUpdate.deltaHealth);
+            failure = failure.replace("[GOLD]",heroUpdate.deltaGold);
             heroUpdate = null;
             return failure;
         }     
