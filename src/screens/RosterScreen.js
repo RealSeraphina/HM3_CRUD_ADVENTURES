@@ -24,7 +24,7 @@ const RosterScreen = (props) => {
             data={state}
             keyExtractor={(heros) => {return heros.name}}
             renderItem={({item}) => {
-                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level, heroUpdate})}}>
+                return  <TouchableOpacity onPress={ () => {props.navigation.navigate("Hero", {id : item.id, level: item.level, art: item.art, heroUpdate})}}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
                     </View>

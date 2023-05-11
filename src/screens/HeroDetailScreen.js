@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {View, Text, Button, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, Image, Button, StyleSheet, TouchableOpacity} from "react-native";
 import { Context } from "../context/HeroContext";
 
 import NavBar from "../componets/NavBar";
@@ -9,15 +9,14 @@ const HeroDetailScreen = (props) => {
     const heroID = props.navigation.getParam("id");
     const heroLevel = props.navigation.getParam("level"); 
     const heroUpdate = props.navigation.getParam("heroUpdate");
-
     
     
     // console.log(heroUpdate);
     const currentHero = state.find((currentHero) => {
         return heroID === currentHero.id;
     })
-    
-
+    // const dasArt = currentHero.art;
+    console.log(currentHero);
     return <View style={styles.container}>
         <View style={styles.container}>            
             <Text style={styles.name}>{currentHero.name}</Text>
@@ -25,7 +24,6 @@ const HeroDetailScreen = (props) => {
             <Text style={styles.detail}>Health: {currentHero.currentHealth}/{currentHero.maxHealth}</Text>
             <Text style={styles.detail}>Power: {currentHero.power}</Text>
             <Text style={styles.detail}>Gold: {currentHero.gold}</Text>
-            <Text style={styles.detail}>Art: {state.art}</Text>
         </View>
         <View style={{backgroundColor: heroUpdate.status === "No Update" ? null : '#708090'}}>
             <Text style={styles.adventureResults}>{renderStatus(heroUpdate)}</Text>
@@ -60,6 +58,10 @@ const renderStatus = (heroUpdate) => {
 }
 
 const styles = StyleSheet.create({
+    art:{
+        height: 200,
+        width: 200,
+    },
     container:{
         //borderColor: 'red',
         //borderWidth: 3,

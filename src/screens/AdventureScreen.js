@@ -19,8 +19,15 @@ const AdventureScreen = (props) => {
             renderItem={({item}) => {
                 return  <TouchableOpacity onPress={ () => {
                     heroUpdate = engageAdventure(item.id,item.power,item.currentHealth,item.gold,challengeLevel)
-                    updateHero(heroUpdate);
-                    props.navigation.navigate("Hero", {id : item.id, heroUpdate});
+                    if(heroUpdate.dead){
+                        updateHero(heroUpdate);
+                        props.navigation.navigate("Death", {name: item.name});
+                    }
+                    else{
+                        updateHero(heroUpdate);
+                        props.navigation.navigate("Hero", {id : item.id, heroUpdate});
+                    }
+                    
                     }}>
                     <View style = {styles.row}>                    
                         <Text style={styles.hero}>Name: {item.name} Level: {item.level} Health: {item.currentHealth}/{item.maxHealth} Power: {item.power} Gold: {item.gold}</Text>
@@ -46,8 +53,12 @@ const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) =
         heroUpdate.gold = heroGold +  heroUpdate.deltaGold;
         heroUpdate.deltaHealth =  Math.floor(Math.random()*2);
         heroUpdate.health = heroHealth - heroUpdate.deltaHealth;
+        if(heroUpdate.health <= 0){
+            heroUpdate.health = 1;
+        }
         heroUpdate.status = true; 
         heroUpdate.id = heroID;
+        heroUpdate.dead = false;
 
         return heroUpdate;
     }
@@ -60,6 +71,12 @@ const engageAdventure = (heroID, heroPower, heroHealth, heroGold, challengeLV) =
         heroUpdate.health = heroUpdate.deltaHealth;
         heroUpdate.status = false; 
         heroUpdate.id = heroID;
+        if(heroUpdate.health <= 0){
+            heroUpdate.dead = true;
+        }
+        else{
+            heroUpdate.dead = false;
+        }
         return heroUpdate;
     }
 }

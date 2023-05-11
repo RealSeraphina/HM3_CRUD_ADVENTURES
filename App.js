@@ -6,12 +6,14 @@ import { Provider } from "./src/context/HeroContext";
 import RosterScreen from "./src/screens/RosterScreen";
 import HeroDetailScreen from "./src/screens/HeroDetailScreen";
 import AdventureScreen from "./src/screens/AdventureScreen";
+import DeathScreen from "./src/screens/DeathScreen";
 
 
 const navigator = createStackNavigator({
   Roster: RosterScreen,
   Hero: HeroDetailScreen,
   Adventure: AdventureScreen,
+  Death: DeathScreen,
 },
   {
     initialRouteName: "Roster",

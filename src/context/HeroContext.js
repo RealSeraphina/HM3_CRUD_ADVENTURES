@@ -38,21 +38,31 @@ const heroReducer = (state, action) => {
             })
         case 'update_hero':
             //console.log('update_hero');
-            return state.map((hero) => {
-                //console.log(hero.id);
-                //console.log(action.payload);
-                if(hero.id === action.payload.id){
-                    //console.log("Hero Found");  
-                    hero.currentHealth = action.payload.currentHealth;
-                    hero.gold = action.payload.gold;
-                    hero.power = action.payload.power;                 
-                    return hero;
-                }
-                else{
-                    //console.log("Hero NOT Found")
-                    return hero;
-                }
-            })
+            if(action.payload.dead){
+                console.log("DEAD");
+                return state.filter((hero) => {
+                    return hero.id !== action.payload.id
+                });
+            }
+            else{                
+                return state.map((hero) => {
+                    //console.log(hero.id);
+                    //console.log(action.payload);
+                    if(hero.id === action.payload.id){
+                        //console.log("Hero Found");                        
+                        hero.currentHealth = action.payload.currentHealth;
+                        hero.gold = action.payload.gold;
+                        hero.power = action.payload.power;                 
+                        return hero;
+                        
+                        
+                    }
+                    else{
+                        //console.log("Hero NOT Found")
+                        return hero;
+                    }
+                })
+        }
         default:
             return state;
     }
@@ -68,7 +78,7 @@ const levelHero = (dispatch) => {
 const updateHero = (dispatch) => {
     //console.log("update hero");
     return (hero) => {
-        dispatch({type: 'update_hero', payload:{id: hero.id, gold: hero.gold, currentHealth: hero.health, power: hero.power, status: hero.status}})
+        dispatch({type: 'update_hero', payload:{id: hero.id, gold: hero.gold, currentHealth: hero.health, power: hero.power, status: hero.status, dead: hero.dead}})
     }
 }
 
@@ -107,6 +117,6 @@ const generateHero = () => {
 
 export const {Context, Provider} = createDataContext(heroReducer, 
                                     {hireHero: hireHero, levelHero: levelHero, updateHero: updateHero}, 
-                                    [{id: 1, name: "JoCat", level: 1, power: 10, maxHealth: 100, currentHealth: 100, gold: 5000}]
+                                    [{id: 1, name: "JoCat", level: 1, power: 10, maxHealth: 100, currentHealth: 100, gold: 5000, art: "../../assets/slimes/blue_slime.png"}]
                                     );
 
