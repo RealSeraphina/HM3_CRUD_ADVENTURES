@@ -33,8 +33,7 @@ const heroReducer = (state, action) => {
                         hero.power = hero.power + Math.floor(Math.random()* 5) + 1;
                         hero.gold = hero.gold - (hero.level * 10);
                         hero.level++ ;
-                    }
-                    
+                    }                    
                     return hero;
                 }
                 else{

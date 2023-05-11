@@ -56,7 +56,8 @@ const renderStatus = (heroUpdate) => {
             success = barkeepDialogue[Math.floor(Math.random()* barkeepDialogue.length)];
             success = success.replace("[HP]",heroUpdate.deltaHealth);
             success = success.replace("[GOLD]",heroUpdate.deltaGold);
-            heroUpdate = null;
+            //heroUpdate = null;
+            heroUpdate.status = "No Update";
             return success
         }
         else{
@@ -73,7 +74,8 @@ const renderStatus = (heroUpdate) => {
             failure = barkeepDialogue[Math.floor(Math.random()* barkeepDialogue.length)];
             failure = failure.replace("[HP]",heroUpdate.deltaHealth);
             failure = failure.replace("[GOLD]",heroUpdate.deltaGold);
-            heroUpdate = null;
+            //heroUpdate = null;
+            heroUpdate.status = "No Update";
             return failure;
         }     
     }
