@@ -25,6 +25,13 @@ const generateEulogy = (heroName) =>{
         "[Name] was a true hero, and their legacy will live on. They will always be remembered for their courage, their strength, and their kindness. But most of all, they will be remembered for their bravery.",
         "[Name] was never afraid to stand up for what they believed in, even when it was difficult. They were always willing to fight for the weak and the oppressed, and they never backed down from a challenge. They were a true inspiration to us all, and we will never forget their bravery.",
         "[Name] will be deeply missed by all who knew them. They were a true hero, and their legacy will live on forever.",
+        "[Name] was a true adventurer. They were always looking for new challenges and new experiences. They were never afraid to take risks, and they always came out on top. They were an inspiration to us all, and we will never forget them.",
+        "[Name] was a true hero. They fought bravely against evil, and they always put the needs of others before their own. They were a loyal friend, a wise leader, and a compassionate person. They will be deeply missed by all who knew them.",
+        "We are gathered here today to remember a great adventurer, [Name]. They were a true hero, who always fought for what was right. They were a skilled fighter, a loyal friend, and a compassionate person. They will be deeply missed by all who knew them.",
+        "Here lies [Name], a true warrior and a great leader. They fought bravely in many battles, and they always put the needs of their people first. They will be deeply missed by all who knew them.",
+        "[Name] was a fierce warrior and a skilled tactician. They led their people to victory in many battles, and they never once backed down from a challenge. They will be remembered as a true hero.",
+        "[Name] was a generous and kind-hearted person. They always helped those in need, and they were always willing to lend a helping hand. They will be deeply missed by all who knew them.",
+        "[Name] was a true Barbarian. They were brave, strong, and fearless. They lived their life to the fullest, and they died a warrior's death. They will be remembered as a legend."
     ]
     eulogy = eulogyTemplates[Math.floor(Math.random()* eulogyTemplates.length)];
     eulogy = eulogy.replace("[Name]",heroName);
